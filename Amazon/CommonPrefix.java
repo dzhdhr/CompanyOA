@@ -5,7 +5,7 @@ public class CommonPrefix {
         int ret = s.length();
         for(int i = 0;i<s.length();i++){
             int l = shareStart(s.substring(0,i),s.substring(i));
-            System.out.println(l);
+            //
             ret+=l;
         }
         return ret;
