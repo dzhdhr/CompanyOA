@@ -58,6 +58,6 @@ public class TwoString {
     }
 
     public static void main(String[] args) {
-        System.out.println(TwoString("bcbcbcbw", "bpbbwbw"));
+        System.out.println(TwoString("aadasdwa", "bsdwsbaa"));
     }
 }
