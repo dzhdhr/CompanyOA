@@ -29,6 +29,6 @@ public class KthGreaterElement {
     }
 
     public static void main(String[] args) {
-        System.out.println(Arrays.toString(kthGreaterElements(new int[]{2, 3, 5, 1, 7, 9}, 3)));
+        System.out.println(Arrays.toString(kthGreaterElements(new int[]{3,4,2,6,5}, 2)));
     }
 }
