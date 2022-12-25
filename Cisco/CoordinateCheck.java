@@ -101,7 +101,7 @@ public class CoordinateCheck {
     }
 
     public static void main(String[] args) {
-        String tests[]  = new String[]{"(10, 0)"};
+        String tests[]  = new String[]{"(10., 0)"};
         for(String s: tests){
             System.out.println(isValid(s));
         }
