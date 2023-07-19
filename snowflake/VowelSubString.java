@@ -8,7 +8,7 @@ import java.util.*;
 
 // sliding window
 // add fast add one element every time
-// remove slow if the cur element is not vowel then clear move slow to fast+1 clear  whole thing
+// remove slow if the cur element is not vowel then clear move slow to fast+1 clear whole thing
 public class VowelSubString {
     private static boolean isVowel(char c){
         return c=='a'||c=='e'||c=='i'||c=='o'||c=='u';

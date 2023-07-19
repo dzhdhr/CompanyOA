@@ -25,7 +25,7 @@ public class ArrayReduction {
     static public List<List<Integer>> grid;
 
 
-    public static List<Integer> ArrayRed(int[]arr){
+    public static List<Integer> ArrayRed(int[]arr)  {
         int MEX = MEX(arr,0,arr.length-1);
 
         int left = 0,right = arr.length-1;

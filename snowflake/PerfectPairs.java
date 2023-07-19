@@ -36,7 +36,7 @@ public class PerfectPairs {
     }
 
     public static void main(String[] args) {
-        int[] ret = new int[]{8,9,9,9,9,10,0,0,0};
+        int[] ret = new int[]{2,1,0};
         System.out.println(allPair(ret));
         System.out.println(numberOfPair(ret));
     }

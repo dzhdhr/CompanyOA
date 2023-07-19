@@ -1,6 +1,7 @@
 package snowflake;
 
 public class MinMaxValue {
+    // search for left bound
     public static int MaxminValue(int[]arr){
         int max = arr[0];
         int min = arr[0];
@@ -28,11 +29,11 @@ public class MinMaxValue {
         int diff = 0;
         System.out.println(target+" ");
         for (int j : arr) {
-            if (j <= target) {
+            if (j <= target) {//如果我比target小说明我可以给diff贡献值
                 diff += target - j;
-            } else if (j - diff <= target) {
+            } else if (j - diff <= target) {//如果我比target大但是能通过diff弥补回来那么我可以直接用diff弥补
                 diff -= j - target;
-            } else {
+            } else {//如果我比diff大那么我弥补不回来
                 System.out.println();
                 return false;
             }

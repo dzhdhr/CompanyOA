@@ -39,7 +39,7 @@ public class PalindromicSeq {
     }
 
     public static void main(String[] args) {
-        System.out.println(maxScore("axbawbaseksqke"));
+        System.out.println(maxScore("aacdcbdccdccbacadcdcbbbdbcaacabddbcaddbccdcaccadbadcdcdcbaabcadbdcabdbcccbddcdabcaadcdadcacbdbccccbcacccdbacbddbacbccdadddbccdbddcabbbcccdddadddccdbddabbddcaadacaacdddbcbbccdadadbdbbcaaabccabdaaddadaa"));
     }
 
 }

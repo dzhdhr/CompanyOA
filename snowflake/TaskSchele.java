@@ -36,8 +36,8 @@ public class TaskSchele {
 
     public static void main(String[] args) {
 
-        int time[] = new int[]{1,1,1,1,1000};
-        int[]cost = new int[]{5,6,7,8,1000000};
+        int time[] = new int[]{1,2,3,2};
+        int[]cost = new int[]{1,2,3,2};
         m = new HashMap[time.length];
         for(int i = 0;i<time.length;i++){
             m[i] = new HashMap<>();
