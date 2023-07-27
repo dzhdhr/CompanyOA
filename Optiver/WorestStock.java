@@ -32,8 +32,8 @@ public class WorestStock {
         this.sellPQ = new HashMap<>();
         this.price = new HashMap<>();
     }
-    public void update(int price,String name,int id,int share,int tradeType){
-        Node n = new Node(price,name,id,share,tradeType);
+    public void update(int price,String name,int id,int share,String tradeType){
+        Node n = new Node(price,name,id,share,tradeType.equals("SELL")?1:0);
         if (n.tradeType==1){
             sellPQ.putIfAbsent(name,new PriorityQueue<>(Comparator.comparingInt(Node::totalCost)));
             sellPQ.get(name).add(n);
@@ -47,43 +47,52 @@ public class WorestStock {
     public void update(int price, String name){
         this.price.put(name,price);
     }
+
     public int query(String name){
         if (!buyPQ.containsKey(name)&&!sellPQ.containsKey(name)){
             return -1;
         }
         if(!buyPQ.containsKey(name)){
             Node front = sellPQ.get(name).peek();
-            //sell price
-            if (front.price>price.get(name)){
+
+            //sell price is less than cur price
+            if (front.price<price.get(name)){
                 return front.id;
             }
             return -1;
         }
         if(!sellPQ.containsKey(name)){
             Node front = buyPQ.get(name).peek();
-            if (front.price<price.get(name)){
+            // buy price is too high
+            if (front.price>price.get(name)){
+
                 return front.id;
             }
             return -1;
         }
         Node buy = buyPQ.get(name).peek();
         Node sell = sellPQ.get(name).peek();
-        if(buy.price<price.get(name)&&sell.price>price.get(name)){
+        //boy price is low and sell price is high
+        if(buy.price<=price.get(name)&&sell.price>price.get(name)){
             return -1;
         }
-        if(buy.price<price.get(name)){
+        if(buy.price<=price.get(name)){
             return sell.id;
         }
-        if(sell.price<price.get(name)){
+        if(sell.price>=price.get(name)){
             return buy.id;
         }
-        int sellProfit = sell.totalCost()-sell.share*price.get(name);
-        int buyProfit = buy.totalCost()-buy.share*price.get(name);
+        int sellProfit = Math.abs(sell.totalCost()-sell.share*price.get(name));
+        int buyProfit = Math.abs(buy.totalCost()-buy.share*price.get(name));
         if(buyProfit<sellProfit){
             return buy.id;
         }
         return sell.id;
 
+
+    }
+
+    public static void main(String[] args) {
 
     }
 }
