@@ -37,7 +37,6 @@ public class BattleShip {
         }
         return ret;
     }
-
     public static void main(String[] args) {
         char[][]grid = new char[][]{
                 {'.','A','B','B','B'},

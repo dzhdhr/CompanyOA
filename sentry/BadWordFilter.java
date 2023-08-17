@@ -20,6 +20,9 @@ public class BadWordFilter {
     public static void insert(String word){
         TrieNode cur = root;
         for(char c: word.toCharArray()){
+            if(Character.isUpperCase(c)){
+                c = Character.toLowerCase(c);
+            }
             if(c=='*'){
                 if(cur.childern.get('*')==null){
                     cur.childern.put('*',new TrieNode());
@@ -44,6 +47,9 @@ public class BadWordFilter {
         }
         if(index==word.length()&&cur.childern.containsKey('*')&&cur.childern.get('*').isword)return true;
         if(index==word.length())return false;
+        if(!Character.isAlphabetic(word.charAt(index))){
+            return isword(word,cur,index+1);
+        }
         if(cur.childern.containsKey('*')){
             boolean result = isword(word,cur,index+1);
             if(result)return true;
@@ -53,10 +59,10 @@ public class BadWordFilter {
             boolean result3 = isword(word,cur.childern.get('*'),index);
             if(result3)return true;
         }
-        int charIndex = word.charAt(index)-'a';
 
-        if(cur.childern.containsKey(word.charAt(index))){
-            return isword(word,cur.childern.get(word.charAt(index)),index+1);
+        char curChar = Character.toLowerCase(word.charAt(index));
+        if(cur.childern.containsKey(curChar)){
+            return isword(word,cur.childern.get(curChar),index+1);
         }
         return false;
 
@@ -69,20 +75,29 @@ public class BadWordFilter {
             if("".equals(elem))continue;
             insert(elem);
         }
+
         StringBuilder ret =new StringBuilder();
         for(int i =0 ;i<input.length();i++){
-            if(!Character.isAlphabetic(input.charAt(i))){
+            if(input.charAt(i)==' '){
                 ret.append(input.charAt(i));
                 continue;
             }
             int j = i;
-            while (j<input.length()&&Character.isAlphabetic(input.charAt(j))){
+            while (j<input.length()&&input.charAt(j)!=' '){
                 j++;
             }
             String cur = input.substring(i,j);
             System.out.println(cur);
             if(isword(cur,root,0)){
-                ret.append("*".repeat(Math.max(0, j - i)));
+                for(int l = i;l<j;l++){
+                    if(Character.isAlphabetic(input.charAt(l))){
+                        ret.append("*");
+                    }
+                    else{
+                        ret.append(input.charAt(l));
+                    }
+                }
+                //ret.append("*".repeat(Math.max(0, j - i)));
             }
             else{
                 ret.append(cur);
@@ -95,6 +110,6 @@ public class BadWordFilter {
     }
 
     public static void main(String[] args) {
-        System.out.println(wordFilter("lame jerk scrub", "The programmer was being a jerk during code review."));
+        System.out.println(wordFilter("jerk *a* scrub review", "The progra-mmer was being a  (JER-K) during code (re-view)."));
     }
 }
